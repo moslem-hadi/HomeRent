@@ -34,8 +34,21 @@ namespace Infrastructure.Persistence
                 throw;
             }
         }
+        public async Task SeedAsync()
+        {
+            try
+            {
+                await TrySeedAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while seeding the database.");
+                throw;
+            }
+        }
+
         private const string _adminNameAndPass = "administrator";
-        public async Task TrySeedDataAsync()
+        private async Task TrySeedAsync()
         {
             var adminRole = new IdentityRole(RoleNames.Administrator);
             if (_roleManager.Roles.All(a => a.Name != adminRole.Name))
@@ -64,7 +77,7 @@ namespace Infrastructure.Persistence
                     Title = "That house by the sea",
                     Description = "It's a house by the sea. And it is BEAUTIFUL.",
                     Price = 140,
-                    Pictures = new string[] { "https://a0.muscache.com/im/pictures/29d1ea3a-d557-4852-bdce-123edc3aaace.jpg?im_w=1200" },
+                    Pictures = new List<string> { "https://a0.muscache.com/im/pictures/29d1ea3a-d557-4852-bdce-123edc3aaace.jpg?im_w=1200" },
                     Properties = new List<Property> { property },
                 });
 

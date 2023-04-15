@@ -1,9 +1,4 @@
 ﻿using Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities;
 
@@ -15,12 +10,12 @@ public class Product: BaseAuditableEntity
 
     public decimal Price { get; set; }
 
-    public string[]? Pictures { get; set; }
+    public List<string> Pictures { get; set; } = new List<string>();
 
     public decimal? Rating { get; set; }
 
     public int? ReviewCount { get; set; }
 
-    public List<Property>? Properties{ get; set; }
+    public List<Property> Properties{ get; set; } = new List<Property>();
 
 }

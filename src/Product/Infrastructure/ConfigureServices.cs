@@ -13,8 +13,8 @@ namespace Infrastructure;
 
 public static class ConfigureServices
 {
-    private const string databaseName = "dbName";
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    private const string databaseName = "productDatabase";
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<AuditableEntitySaveChangesInterceptor>();
 
