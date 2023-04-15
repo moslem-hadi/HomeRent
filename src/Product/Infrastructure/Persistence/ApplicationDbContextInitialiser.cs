@@ -47,19 +47,23 @@ namespace Infrastructure.Persistence
             }
         }
 
-        private const string _adminNameAndPass = "administrator";
+        private const string _adminName = "administrator@localhost";
+        private const string _adminPass = "Admin123!@#";
         private async Task TrySeedAsync()
         {
             var adminRole = new IdentityRole(RoleNames.Administrator);
             if (_roleManager.Roles.All(a => a.Name != adminRole.Name))
                 await _roleManager.CreateAsync(adminRole);
 
-            var adminUser = new ApplicationUser { UserName = _adminNameAndPass, Email = _adminNameAndPass };
+            var adminUser = new ApplicationUser { UserName = _adminName, Email = _adminName };
 
             if(_userManager.Users.All(a=> a.UserName != adminUser.UserName))
             {
-                await _userManager.CreateAsync(adminUser, _adminNameAndPass);
-                await _userManager.AddToRoleAsync(adminUser, adminRole.Name!);
+                await _userManager.CreateAsync(adminUser, _adminPass);
+                if (!string.IsNullOrWhiteSpace(adminRole.Name))
+                {
+                    await _userManager.AddToRolesAsync(adminUser, new[] { adminRole.Name });
+                }
             }
 
             if (!_context.Products.Any())
