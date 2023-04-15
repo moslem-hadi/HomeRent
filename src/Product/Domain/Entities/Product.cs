@@ -15,11 +15,11 @@ public class Product: BaseAuditableEntity
 
     public decimal Price { get; set; }
 
-    public List<string>? Pictures { get; set; }
+    public string[]? Pictures { get; set; }
 
-    public decimal Rating { get; set; }
+    public decimal? Rating { get; set; }
 
-    public int ReviewCount { get; set; }
+    public int? ReviewCount { get; set; }
 
     public List<Property>? Properties{ get; set; }
 
