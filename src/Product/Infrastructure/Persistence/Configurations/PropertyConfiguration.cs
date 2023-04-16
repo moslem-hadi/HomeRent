@@ -11,10 +11,12 @@ public class PropertyConfiguration : IEntityTypeConfiguration<Property>
         builder.Property(a => a.Title)
             .IsRequired()
             .HasMaxLength(50);
+         
+
         builder.Property(a => a.Icon)
             .IsRequired()
             .HasMaxLength(50);
-        builder.HasMany(a => a.Products);
-            
+
+        //builder.HasMany(e => e.Products);
     }
 }

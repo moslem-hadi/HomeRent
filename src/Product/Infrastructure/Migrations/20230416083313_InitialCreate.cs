@@ -248,24 +248,24 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductProperty",
+                name: "ProductProperties",
                 columns: table => new
                 {
-                    ProductsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PropertiesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PropertyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductProperty", x => new { x.ProductsId, x.PropertiesId });
+                    table.PrimaryKey("PK_ProductProperties", x => new { x.ProductId, x.PropertyId });
                     table.ForeignKey(
-                        name: "FK_ProductProperty_Products_ProductsId",
-                        column: x => x.ProductsId,
+                        name: "FK_ProductProperties_Products_PropertyId",
+                        column: x => x.PropertyId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductProperty_Properties_PropertiesId",
-                        column: x => x.PropertiesId,
+                        name: "FK_ProductProperties_Properties_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Properties",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -347,9 +347,9 @@ namespace Infrastructure.Migrations
                 columns: new[] { "SubjectId", "SessionId", "Type" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductProperty_PropertiesId",
-                table: "ProductProperty",
-                column: "PropertiesId");
+                name: "IX_ProductProperties_PropertyId",
+                table: "ProductProperties",
+                column: "PropertyId");
         }
 
         /// <inheritdoc />
@@ -380,7 +380,7 @@ namespace Infrastructure.Migrations
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
-                name: "ProductProperty");
+                name: "ProductProperties");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

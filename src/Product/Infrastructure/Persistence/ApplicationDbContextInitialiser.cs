@@ -75,17 +75,24 @@ namespace Infrastructure.Persistence
                 };
                 _context.Properties.Add(property);
 
-
-                _context.Products.Add(new Product
+                var product = new Product
                 {
                     Title = "That house by the sea",
                     Description = "It's a house by the sea. And it is BEAUTIFUL.",
                     Price = 140,
                     Pictures = new List<string> { "https://a0.muscache.com/im/pictures/29d1ea3a-d557-4852-bdce-123edc3aaace.jpg?im_w=1200" },
-                    Properties = new List<Property> { property },
-                });
+                };
+                var productProperty = new ProductProperty
+                {
+                    Product = product,
+                    Property = property
+                };
+                product.Properties = new List<ProductProperty> { productProperty };
+
+                _context.Products.Add(product);
 
                 await _context.SaveChangesAsync();
+
             }
         }
     }

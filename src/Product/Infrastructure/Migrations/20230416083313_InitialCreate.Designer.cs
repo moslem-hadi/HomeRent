@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230415191213_InitialCreate")]
+    [Migration("20230416083313_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -67,6 +67,21 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ProductProperty", b =>
+                {
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PropertyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ProductId", "PropertyId");
+
+                    b.HasIndex("PropertyId");
+
+                    b.ToTable("ProductProperties");
                 });
 
             modelBuilder.Entity("Domain.Entities.Property", b =>
@@ -433,19 +448,23 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ProductProperty", b =>
+            modelBuilder.Entity("Domain.Entities.ProductProperty", b =>
                 {
-                    b.Property<Guid>("ProductsId")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasOne("Domain.Entities.Property", "Property")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<Guid>("PropertiesId")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasOne("Domain.Entities.Product", "Product")
+                        .WithMany("Properties")
+                        .HasForeignKey("PropertyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("ProductsId", "PropertiesId");
+                    b.Navigation("Product");
 
-                    b.HasIndex("PropertiesId");
-
-                    b.ToTable("ProductProperty");
+                    b.Navigation("Property");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -499,19 +518,14 @@ namespace Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductProperty", b =>
+            modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
-                    b.HasOne("Domain.Entities.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Properties");
+                });
 
-                    b.HasOne("Domain.Entities.Property", null)
-                        .WithMany()
-                        .HasForeignKey("PropertiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            modelBuilder.Entity("Domain.Entities.Property", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

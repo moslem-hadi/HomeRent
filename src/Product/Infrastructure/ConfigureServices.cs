@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure;
+namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ConfigureServices
 {

@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities;
 
@@ -16,6 +17,17 @@ public class Product: BaseAuditableEntity
 
     public int? ReviewCount { get; set; }
 
-    public List<Property> Properties{ get; set; } = new List<Property>();
+    public IList<ProductProperty> Properties{ get; set; }
 
+}
+public class ProductProperty
+{
+    public Guid ProductId { get; set; }
+    [ForeignKey("ProductId")]
+    public virtual Product Product { get; set; }
+
+    public Guid PropertyId { get; set; }
+
+    [ForeignKey("PropertyId")]
+    public virtual Property Property { get; set; }
 }

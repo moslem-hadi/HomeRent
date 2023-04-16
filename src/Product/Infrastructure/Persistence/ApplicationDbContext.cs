@@ -33,6 +33,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
 
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Property> Properties => Set<Property>();
+    public DbSet<ProductProperty> ProductProperties => Set<ProductProperty>();
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
