@@ -1,21 +1,16 @@
-using Application.Common.Interfaces;
-using Infrastructure;
 using Infrastructure.Persistence;
-using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddControllers();
+//builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
-//builder.Services.AddWebUIServices();
-builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddWebUIServices();
 
 var app = builder.Build();
 
@@ -31,16 +26,32 @@ if (app.Environment.IsDevelopment())
         await initialiser.InitialiseAsync();
         await initialiser.SeedAsync();
     }
-    app.UseSwagger();
-    app.UseSwaggerUI();
 }
 
+app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseSwaggerUi3(settings =>
+{
+    settings.Path = "/api";
+    settings.DocumentPath = "/api/specification.json";
+});
+
+app.UseRouting();
 
 app.UseAuthentication();
 app.UseIdentityServer();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller}/{action=Index}/{id?}");
+
+//app.MapRazorPages();
+
+//app.MapFallbackToFile("index.html");
 
 app.Run();
