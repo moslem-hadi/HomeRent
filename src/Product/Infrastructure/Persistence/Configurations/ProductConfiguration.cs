@@ -16,7 +16,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.Property(a => a.Price)
             .IsRequired();
 
-        //builder.HasMany(a => a.Properties);
+        builder.HasMany(a => a.Properties) ;
         builder.Property(y => y.Pictures)
        .HasConversion(
            from => string.Join(";", from),

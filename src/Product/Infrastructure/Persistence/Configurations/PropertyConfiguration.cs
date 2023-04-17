@@ -17,6 +17,7 @@ public class PropertyConfiguration : IEntityTypeConfiguration<Property>
             .IsRequired()
             .HasMaxLength(50);
 
-        //builder.HasMany(e => e.Products);
+        builder.HasMany(e => e.Products)
+            ;
     }
 }

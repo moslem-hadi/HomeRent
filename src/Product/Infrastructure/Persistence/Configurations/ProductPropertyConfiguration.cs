@@ -11,8 +11,8 @@ public class ProductPropertyConfiguration : IEntityTypeConfiguration<ProductProp
     public void Configure(EntityTypeBuilder<ProductProperty> builder)
     {
         builder.HasNoKey();
-        builder.HasOne(a => a.Product).WithOne();
-        builder.HasOne(a => a.Property).WithOne();
+        //builder.HasOne(a => a.Product).WithOne();
+        //builder.HasOne(a => a.Property).WithOne();
 
 
         builder.HasKey(sc => new { sc.ProductId, sc.PropertyId });
