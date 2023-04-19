@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "src\Presentation\WebApp\WebApp.csproj", "{CA444227-6C8F-4283-A4C9-B99290F686FA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{C7BFBC55-5848-45D3-9224-5E5382B75616}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGateway", "src\Gateways\WebGateway\WebGateway.csproj", "{8F10A601-A10D-4C17-A9F5-E2BFCABD8DF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,10 @@ Global
 		{CA444227-6C8F-4283-A4C9-B99290F686FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA444227-6C8F-4283-A4C9-B99290F686FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA444227-6C8F-4283-A4C9-B99290F686FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F10A601-A10D-4C17-A9F5-E2BFCABD8DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F10A601-A10D-4C17-A9F5-E2BFCABD8DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F10A601-A10D-4C17-A9F5-E2BFCABD8DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F10A601-A10D-4C17-A9F5-E2BFCABD8DF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +65,10 @@ Global
 		{7A6B02BB-127D-46C7-ACEF-E745EB6F1BE1} = {5F522D6C-9856-486C-892B-31BA74E43CEE}
 		{6A4EEF23-D288-4F6F-AE2C-27D17FE11467} = {FB708445-9461-44F7-8C96-0EDE8F940AEA}
 		{CA444227-6C8F-4283-A4C9-B99290F686FA} = {6A4EEF23-D288-4F6F-AE2C-27D17FE11467}
+		{C7BFBC55-5848-45D3-9224-5E5382B75616} = {FB708445-9461-44F7-8C96-0EDE8F940AEA}
+		{8F10A601-A10D-4C17-A9F5-E2BFCABD8DF7} = {C7BFBC55-5848-45D3-9224-5E5382B75616}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0913368E-73E8-4571-9CC2-E3C3861885C8}
 	EndGlobalSection
 EndGlobal
