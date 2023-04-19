@@ -1,6 +1,4 @@
 ﻿using Domain.Entities;
-using Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -10,15 +8,11 @@ namespace Infrastructure.Persistence
     {
         private readonly ILogger<ApplicationDbContextInitialiser> _logger;
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitialiser> logger, ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public ApplicationDbContextInitialiser(ILogger<ApplicationDbContextInitialiser> logger, ApplicationDbContext context)
         {
             _logger = logger;
             _context = context;
-            _userManager = userManager;
-            _roleManager = roleManager;
         }
 
         public async Task InitialiseAsync()
@@ -47,25 +41,8 @@ namespace Infrastructure.Persistence
             }
         }
 
-        private const string _adminName = "administrator@localhost";
-        private const string _adminPass = "Admin123!@#";
         private async Task TrySeedAsync()
         {
-            var adminRole = new IdentityRole(RoleNames.Administrator);
-            if (_roleManager.Roles.All(a => a.Name != adminRole.Name))
-                await _roleManager.CreateAsync(adminRole);
-
-            var adminUser = new ApplicationUser { UserName = _adminName, Email = _adminName };
-
-            if(_userManager.Users.All(a=> a.UserName != adminUser.UserName))
-            {
-                await _userManager.CreateAsync(adminUser, _adminPass);
-                if (!string.IsNullOrWhiteSpace(adminRole.Name))
-                {
-                    await _userManager.AddToRolesAsync(adminUser, new[] { adminRole.Name });
-                }
-            }
-
             if (!_context.Products.Any())
             {
                 var property = new Property
