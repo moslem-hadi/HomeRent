@@ -1,13 +1,8 @@
 using Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-//builder.Services.AddControllers();
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
-
+ 
+builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
@@ -32,11 +27,8 @@ app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseSwaggerUi3(settings =>
-{
-    settings.Path = "/api";
-    settings.DocumentPath = "/api/specification.json";
-});
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseRouting();
 
