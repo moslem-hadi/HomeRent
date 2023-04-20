@@ -1,0 +1,15 @@
+﻿@model WebApp.ViewModels.ProductBrief
+ 
+    @if (Model is not null){
+        
+ 
+<div class="col-sm-3">
+    <a href="/view/@Model.Id" class="card">
+        <img class="card-img-top" src="@Model?.Pictures?.FirstOrDefault()" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <p class="card-text">@Model.Description</p>
+        </div>
+    </a>
+</div>
+    }
