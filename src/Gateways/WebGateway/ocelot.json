@@ -12,7 +12,7 @@
           "Port": 7283
         }
       ],
-      "UpstreamPathTemplate": "/gw/api/products",
+      "UpstreamPathTemplate": "/gw/productapi/products",
       "UpstreamHttpMethod": [ "Get" ]
     }
   ]
