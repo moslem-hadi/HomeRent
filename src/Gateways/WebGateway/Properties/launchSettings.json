@@ -1,15 +1,5 @@
 {
   "profiles": {
-    "OcelotGateway": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5003",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
     "http": {
       "commandName": "Project",
       "launchBrowser": true,
@@ -18,7 +8,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5113"
+      "applicationUrl": "http://localhost:5077"
     },
     "https": {
       "commandName": "Project",
@@ -28,7 +18,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "https://localhost:7018;http://localhost:5113"
+      "applicationUrl": "https://localhost:7113;http://localhost:5077"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -51,8 +41,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:19868",
-      "sslPort": 44391
+      "applicationUrl": "http://localhost:59340",
+      "sslPort": 44398
     }
   }
 }
