@@ -8,6 +8,7 @@ public class ProductBrief
     public string? Description { get; set; }
 
     public decimal Price { get; set; }
+    public string PriceDisplay => String.Format("{0:C}", Price);
 
     public List<string> Pictures { get; set; } = new List<string>();
 

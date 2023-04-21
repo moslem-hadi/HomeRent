@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using WebApp.Services;
 using WebApp.ViewModels;
 
@@ -11,12 +12,12 @@ namespace WebApp.Pages
         public ViewModel(ILogger<IndexModel> logger, IProductService productService)
         {
             _productService = productService;
+            Product = new ProductBrief();
         }
         public async Task OnGetAsync()
         {
-            Guid id;
-            Guid.TryParse(Request.RouteValues["id"].ToString(), out id);
-            Product = (await _productService.GetAllProducts()).Items.FirstOrDefault(a=>a.Id == id);
+            Guid.TryParse(Request.RouteValues["id"]!.ToString(), out Guid id);
+            Product = (await _productService.GetAllProducts()).Items.FirstOrDefault(a=>a.Id == id)!;
         }
     }
 }

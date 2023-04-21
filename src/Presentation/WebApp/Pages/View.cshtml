@@ -1,5 +1,68 @@
 ﻿@page "{id}"
 @model WebApp.Pages.ViewModel
-<div class="container">
-    <h1>@Model.Product.Title</h1>
+
+<div class="product-content product-wrap clearfix">
+    <div class="row">
+        <div class="col-md-5 col-sm-12 col-xs-12">
+            <div id="productImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.Product.Pictures.Count; i++)
+                    {
+                        <div class="carousel-item @(i==0 ? "active" : "")">
+                            <img src="@Model.Product.Pictures[i]" class="d-block w-100" alt="@Model.Product.Title">
+                        </div>
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productImagesCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productImagesCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-7 col-sm-12 col-xs-12">
+            <h2 class="name">
+                @Model.Product.Title
+            </h2>
+            <i class="fa fa-star fa-2x text-primary"></i>
+            @Model.Product.Rating
+            <a href="#">@Model.Product.ReviewCount customer reviews</a>
+
+            <hr />
+            <h3 class="price-container">
+                @Model.Product.PriceDisplay
+                <small>*includes tax</small>
+            </h3>
+          
+            <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="home" aria-selected="true">Description</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="contact" aria-selected="false">Reviews</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active description" id="description" role="tabpanel" aria-labelledby="description-tab">
+                    @Html.Raw(Model.Product.Description)
+                </div>
+                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">...</div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <div class="">
+                    <a href="javascript:void(0);" class="btn btn-success btn-lg">Rent It</a>
+                </div>
+                <div class="">
+                    <button class="btn btn-white btn-default"><i class="fa fa-star"></i> Add to wishlist</button>
+                    <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contact home owner</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
