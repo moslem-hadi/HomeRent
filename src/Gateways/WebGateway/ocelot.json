@@ -14,6 +14,18 @@
       ],
       "UpstreamPathTemplate": "/gw/productapi/products",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/products/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7283
+        }
+      ],
+      "UpstreamPathTemplate": "/gw/productapi/products/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
     }
   ]
 }

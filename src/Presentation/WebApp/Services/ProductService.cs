@@ -22,7 +22,7 @@ public class ProductService : IProductService
 
         _remoteServiceBaseUrl = $"{_settings.Value.ProductUrl}/products";
     }
-    public async Task<PaginatedList<ProductBrief>> GetAllProducts()
+    public async Task<PaginatedList<ProductBrief>> GetAllProducts(CancellationToken cancellationToken = default)
     {
         var uri = "https://localhost:7113/gw/productapi/products";// ApiUri.Product.GetAllProducts(_remoteServiceBaseUrl);
 
@@ -35,5 +35,22 @@ public class ProductService : IProductService
         });
 
         return products;
+    }
+
+    public async Task<ProductBrief?> GetProductById(Guid Id, CancellationToken cancellationToken = default)
+    {
+        var uri = "https://localhost:7113/gw/productapi/products/"+Id;// ApiUri.Product.GetAllProducts(_remoteServiceBaseUrl);
+
+        var responseString = await _httpClient.GetStringAsync(uri);
+
+        if (string.IsNullOrEmpty(responseString))
+            return null;
+
+        var product = JsonSerializer.Deserialize<ProductBrief>(responseString, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+        });
+
+        return product;
     }
 }
